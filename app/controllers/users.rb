@@ -1,25 +1,27 @@
-get '/login/' do
+get '/login' do
   erb :'users/new'
 end
 
 post '/users' do
   if params[:submit] == "create"
-    new_user = User.new(username: params[:username], password: params[:password])
-    new_user.save
-    session[:user_id] = new_user.id
+    @user = User.new(username: params[:username], password: params[:password])
+    @user.save
+    session[:user_id] = @user.id
         redirect "/"
   else
     # byebug
     if User.valid?(params[:username])
-    new_user = User.where(username: params[:username]).first
-      if new_user.authenticate(params[:password])
-        session[:user_id] = new_user.id
+    @user = User.where(username: params[:username]).first
+      if @user.authenticate(params[:password])
+        session[:user_id] = @user.id
         redirect "/"
       else
-
+        flash[:notice] = "Wrong Password"
+        erb :'users/new'
       end
     else
-      redirect "/?notice=no_account"
+      flash[:notice] = "No such user exists"
+      erb :'users/new'
     end
   end
 
