@@ -20,7 +20,20 @@
   <title></title>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
+    <% if session[:user_id] != nil %>
+    <form action="/logout" method="post">
+      <input name="_method" value="delete" type="hidden">
+      <button type="submit" class="btn btn-primary">Log Out</button>
+    </form>
+    <% else%>
+    <a href="/login"><button class="btn btn-primary">Log In</button></a>
+    <% end%>
+  </div>
+</nav>
+  <div class="container">
+
   <%= yield %>
   </div>
 </body>

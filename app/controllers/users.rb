@@ -2,6 +2,11 @@ get '/login' do
   erb :'users/new'
 end
 
+delete '/logout' do
+  session[:user_id] = nil
+  redirect "/"
+end
+
 post '/users' do
   if params[:submit] == "create"
     @user = User.new(username: params[:username], password: params[:password])
@@ -11,9 +16,9 @@ post '/users' do
   else
     # byebug
     if User.valid?(params[:username])
-    @user = User.where(username: params[:username]).first
-      if @user.authenticate(params[:password])
-        session[:user_id] = @user.id
+    user = User.where(username: params[:username]).first
+      if user.authenticate(params[:password])
+        session[:user_id] = user.id
         redirect "/"
       else
         flash[:notice] = "Wrong Password"
