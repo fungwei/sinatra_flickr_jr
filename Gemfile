@@ -19,6 +19,8 @@ gem 'shotgun'
 
 gem 'rack-flash3'
 
+gem 'carrierwave'
+
 group :test do
   gem 'faker'
   gem 'rspec'

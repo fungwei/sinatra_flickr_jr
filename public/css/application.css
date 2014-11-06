@@ -2,10 +2,24 @@ body { padding-top: 70px; }
 
 .container {
   margin: 20px auto;
-  width: 800px;
+  width: 1000px;
 }
 
 
 th {
   text-align: left;
+}
+
+form{
+  display: inline;
+}
+
+.choose_file{
+  max-width: 300px;
+  display: inline !important;
+}
+
+.album_image{
+  height: 300px;
+  float: left
 }

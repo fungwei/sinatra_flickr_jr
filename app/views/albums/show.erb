@@ -1,0 +1,12 @@
+<%if @photo.try(:errors) %>
+  <h3 style="color: red"><%= @photo.errors.full_messages %></h3>
+<% end %>
+<form action="/photo" enctype="multipart/form-data" method="post">
+  <input name="album_id" value="<%= params[:id] %>" type="hidden">
+  <input type="file" name="path" class="choose_file" >
+  <button type="submit" class="btn btn-info image_upload">Upload</button>
+</form>
+<hr>
+<% @album.photos.each do |photo| %>
+  <img class="album_image" src="<%= photo.path %>">
+<% end %>

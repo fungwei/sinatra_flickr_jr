@@ -23,6 +23,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <% if session[:user_id] != nil %>
+    <a href="/albums/new"><button class="btn btn-info">New Album</button></a>
     <form action="/logout" method="post">
       <input name="_method" value="delete" type="hidden">
       <button type="submit" class="btn btn-primary">Log Out</button>
